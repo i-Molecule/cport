@@ -1,0 +1,1 @@
+{"model_name": "tf_BfG_NTS_RP1", "N": 4, "directory": "data/precomputed_chunks/BfG_NTS_RP1", "pretrained_model": "weights/model_random"}

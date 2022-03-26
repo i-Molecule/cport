@@ -1,0 +1,1 @@
+{"model_name": "tf_Cao_HILIC", "N": 4, "directory": "data/precomputed_chunks/Cao_HILIC", "pretrained_model": "weights/model_random"}

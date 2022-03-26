@@ -1,0 +1,1 @@
+{"model_name": "tf_BDD_C18", "N": 4, "directory": "data/precomputed_chunks/BDD_C18", "pretrained_model": "weights/model_random"}

@@ -1,0 +1,1 @@
+{"model_name": "tf_inhouse_c18", "N": 4, "directory": "data/precomputed_chunks/inhouse_c18", "pretrained_model": "weights/model_random"}

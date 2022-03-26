@@ -1,0 +1,1 @@
+{"model_name": "tf_ABC", "N": 4, "directory": "data/precomputed_chunks/ABC", "pretrained_model": "weights/model_random"}

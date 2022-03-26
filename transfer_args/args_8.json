@@ -1,0 +1,1 @@
+{"model_name": "tf_FEM_long", "N": 4, "directory": "data/precomputed_chunks/FEM_long", "pretrained_model": "weights/model_random"}

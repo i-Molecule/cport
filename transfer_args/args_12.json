@@ -1,0 +1,1 @@
+{"model_name": "tf_RPMMFDA", "N": 4, "directory": "data/precomputed_chunks/RPMMFDA", "pretrained_model": "weights/model_random"}

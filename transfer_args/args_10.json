@@ -1,0 +1,1 @@
+{"model_name": "tf_HILIC_BDD_2", "N": 4, "directory": "data/precomputed_chunks/HILIC_BDD_2", "pretrained_model": "weights/model_random"}

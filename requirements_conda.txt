@@ -1,0 +1,8 @@
+moleculekit==0.1.30
+multiprocess==0.70.11.1
+numpy==1.19.5
+pandas
+scipy
+tqdm==4.60.0
+deepchem==2.4.0
+tensorflow==2.4.1

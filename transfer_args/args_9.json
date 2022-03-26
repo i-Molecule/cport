@@ -1,0 +1,1 @@
+{"model_name": "tf_HIILIC_tip", "N": 4, "directory": "data/precomputed_chunks/HIILIC_tip", "pretrained_model": "weights/model_random"}

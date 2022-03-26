@@ -1,0 +1,1 @@
+{"model_name": "tf_SNU_RIKEN_POS", "N": 4, "directory": "data/precomputed_chunks/SNU_RIKEN_POS", "pretrained_model": "weights/model_random"}

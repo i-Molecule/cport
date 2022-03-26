@@ -1,0 +1,1 @@
+{"model_name": "tf_CBM_Test_A", "N": 4, "directory": "data/precomputed_chunks/CBM_Test_A", "pretrained_model": "weights/model_random"}
