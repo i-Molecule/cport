@@ -4,7 +4,7 @@ CPORT (Conformation-based Prediction Of Retention Time) is a deep learning model
 
 Check our manuscript: M. Zaretskii, I. Bashkirova, S. Osipenko, Y. Kostyukevich, E. Nikolaev, and P. Popov, "3D chemical structures allow robust deep learning models for retention time prediction", 2022
 
-![CPORT](https://github.com/i-Molecule/cport/blob/master/pics/CPORT_final_pic_v3.png)
+![CPORT](https://github.com/i-Molecule/cport/tree/main/pics/CPORT_final_pic_v3.png)
 
 # Setup
 
