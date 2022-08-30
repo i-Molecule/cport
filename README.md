@@ -42,7 +42,7 @@ To launch trainings use the following script using best parameters from grid sea
 # Pretrained weights
 
 Pretrained weights of models trained on random and scaffold splits of the METLIN dataset are available at: 
-https://drive.google.com/drive/folders/1baoG0etkFmX904T8LCSmkLejZhvOjQnu?usp=sharing
+https://disk.yandex.ru/d/LOgUUt7LUNGwUA
 
 Put them into the `weights` directory within this repo.
 
