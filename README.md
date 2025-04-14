@@ -8,6 +8,37 @@ Check our manuscript: M. Zaretskii, I. Bashkirova, S. Osipenko, Y. Kostyukevich,
 
 # Setup
 
+### Pixi
+
+```bash
+# Downloading for Linux & macOS
+curl -fsSL https://pixi.sh/install.sh | bash
+
+# run workspace
+pixi shell
+
+# prepare metlin conformations for training
+# takes about an hour and a lot of disk space
+pixi run prepare_conformations #+300gb
+pixi run stack_tensors_random #+250gb
+pixi run stack_tensors_scaffold #+250gb
+
+#each takes a day, but feel free to experiment with mixed precision training in tensorflow or write wise batch generators, because for now loading "stacked" numpy arrays is a bottleneck
+pixi run train_on_random_split 
+pixi run train_on_scaffold_split
+
+#download weights
+pixi run download_weights
+#score metlin dataset with models
+pixi run run_random_model
+pixi run run_scaffold_model
+```
+
+We tested our code with pixi env on Ubuntu 22.04, CUDA 12.4, GeForce RTX 4090.
+
+
+### Conda
+
 For proper installation of CPORT you need `python>=3.6` `TensorFlow 2.4`, `rdkit 2019.03.5`, `moleculekit 0.1.30` and other commonly used python packages listed in requirements_conda.txt
 
 Use these commands to create a virtual environment with the required packages:
@@ -42,7 +73,7 @@ To launch trainings use the following script using best parameters from grid sea
 # Pretrained weights
 
 Pretrained weights of models trained on random and scaffold splits of the METLIN dataset are available at: 
-https://disk.yandex.ru/d/LOgUUt7LUNGwUA
+https://disk.yandex.ru/d/XrKLM7o_G_emww
 
 Put them into the `weights` directory within this repo.
 
@@ -50,9 +81,9 @@ Put them into the `weights` directory within this repo.
 
 To predict the retention times use the following scripts:
 
-`python3 test.py --weights weights/model_random --mol_dir precomputed_tensors/metlin --output random_predictions.csv`
+`python3 test.py --weights weights/cport_checkpoints/model_random/model_random --mol_dir data/precomputed_tensors/metlin --output random_predictions.csv`
 
-`python3 test.py --weights weights/model_scaffold --mol_dir precomputed_tensors/metlin --output scaffold_predictions.csv`
+`python3 test.py --weights weights/cport_checkpoints/model_scaffold/model_scaffold --mol_dir data/precomputed_tensors/metlin --output scaffold_predictions.csv`
 
 You can also screen an .sdf file using:
 

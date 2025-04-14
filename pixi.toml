@@ -1,0 +1,32 @@
+[workspace]
+authors = ["Mark Zaretckii, Petr Popov"]
+channels = ["conda-forge", "nvidia"]
+channel-priority = "disabled"
+name = "CPORT_pixi"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+prepare_conformations = { cmd = "python3 prepare_conformations.py --dataset SMRT_filtered.csv --target_column RETENTION_TIME --output metlin --rotation 1" }
+stack_tensors_random = { cmd = "python3 stack_tensors.py --mol_dir data/precomputed_tensors/metlin --scaffold 0" }
+stack_tensors_scaffold = { cmd = "python3 stack_tensors.py --mol_dir data/precomputed_tensors/metlin --scaffold 1" }
+
+train_on_random_split = { cmd = "python3 train.py --json_arguments args/random_model.json" }
+train_on_scaffold_split = { cmd = "python3 train.py --json_arguments args/scaffold_model.json" }
+
+download_weights = { cmd = "bash download_weights.sh" }
+run_scaffold_model = { cmd = "python3 test.py --weights weights/cport_checkpoints/model_scaffold/model_scaffold --mol_dir data/precomputed_tensors/metlin --output scaffold_predictions.csv" }
+run_random_model = { cmd = "python3 test.py --weights weights/cport_checkpoints/model_random/model_random --mol_dir data/precomputed_tensors/metlin --output random_predictions.csv" }
+
+[dependencies]
+python = "*"
+tensorflow = "*"
+
+[pypi-dependencies]
+moleculekit = "*"
+tqdm = "*"
+pandas = "*"
+deepchem = "*"
+scipy = "*"
+rdkit = "*"

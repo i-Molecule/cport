@@ -7,35 +7,42 @@ from tensorflow import data
 from tensorflow import keras
 import tensorflow as tf
 
-def chunk_generator(files, batch_size, N, cubic_rotations):
+def chunk_generator(files, batch_size, N, cubic_rotations, shuffling=False):
 
 
     while True:
-        np.random.shuffle(files)
+        if shuffling:
+            np.random.shuffle(files)
         for f in files:
             fin = np.load(f, 'r')
             length = len(fin)*N
             molecules = fin['molecule'][:, :N, ... ].reshape(length, 40, 40, 40, 7) # make (length*N, 40, 40, 40, 7)
             labels = np.repeat(fin['target'], N)
-
-            batches = int(np.ceil(length / batch_size))
             
-            for i in range(batches):
-                
-                x = molecules[i*batch_size:(i+1)*batch_size]
+            num_samples = labels.shape[0]
+            if shuffling:
+                indices = np.random.permutation(num_samples)
+            else:
+                indices = [i for i in range(num_samples)]
+
+            for start_idx in range(0, num_samples, batch_size):
+                end_idx = start_idx + batch_size
+                batch_indices = indices[start_idx:end_idx]
+                x = molecules[batch_indices]
                 if cubic_rotations:
                     x = random_rotation(x)
-                
-                y = labels[i*batch_size:(i+1)*batch_size]
-                    
+
+                y = labels[batch_indices]
+
                 yield (x, y)
 
-def get_chunked_generator(files, batch_size, N, cubic_rotations):
+
+def get_chunked_generator(files, batch_size, N, cubic_rotations, shuffling=False):
 
 
     output_types = (float, float)
     tfdata_generator = data.Dataset.from_generator(chunk_generator, args=[
-                                                 files, batch_size, N, cubic_rotations],
+                                                 files, batch_size, N, cubic_rotations, shuffling],
                                                  output_types=output_types)
 
     return tfdata_generator

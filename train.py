@@ -26,7 +26,9 @@ with open(args.json_arguments, 'rt') as f:
     args = json.load(f)
 
 N = args['N']
-BATCH_SIZE = 128 
+BATCH_SIZE = 512
+# BATCH_SIZE = 128 
+
 NAME = args['model_name']
 THRESHOLD = args['thr']
 MOL_DIR = Path(args['directory'])
@@ -54,8 +56,8 @@ for f in test_files:
 val_steps = int(np.ceil(val_steps / BATCH_SIZE))
 del f
 ###generators
-train_generator = get_chunked_generator(train_files, batch_size=BATCH_SIZE, N=N, cubic_rotations=CUBIC_AUGMENTATION,)
-test_generator = get_chunked_generator(test_files, batch_size=BATCH_SIZE, N=1, cubic_rotations=False,)
+train_generator = get_chunked_generator(train_files, batch_size=BATCH_SIZE, N=N, cubic_rotations=CUBIC_AUGMENTATION, shuffling=True)
+test_generator = get_chunked_generator(test_files, batch_size=BATCH_SIZE, N=1, cubic_rotations=False, shuffling=False)
 
 ###define loss function
 if THRESHOLD:
@@ -109,5 +111,5 @@ model.fit(train_generator, epochs=N_epochs, steps_per_epoch=steps_per_epoch,\
     shuffle=False, 
     workers=4,
     use_multiprocessing=True,
-    max_queue_size=20, 
+    max_queue_size=120, 
     )
