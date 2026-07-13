@@ -1,3 +1,5 @@
+[![License: PolyForm-Noncommercial-1.0.0](https://img.shields.io/badge/License-PolyForm--Noncommercial--1.0.0-orange.svg)](https://polyformproject.org/licenses/noncommercial/1.0.0)
+
 # CPORT
 
 CPORT (Conformation-based Prediction Of Retention Time) is a deep learning model to predict the retentition time of molecules using its 3D-conformers.
@@ -119,3 +121,11 @@ To fine-tune model pretrained on random split for new chromatography conditions 
 If you use our article of this repository please cite:
 
 M. Zaretskii, I. Bashkirova, S. Osipenko, Y. Kostyukevich, E. Nikolaev, and P. Popov, "3D chemical structures allow robust deep learning models for retention time prediction", 2022
+
+---
+
+## 📄 License
+
+This project is available under the PolyForm Noncommercial license. 
+
+For commercial use, collaboration, or to request an alternative license, please contact [Petr Popov](mailto:popov.petrus@gmail.com).
